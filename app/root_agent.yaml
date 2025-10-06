@@ -1,0 +1,24 @@
+version: "1"
+
+# App-level configuration for ADK
+app:
+  name: mmvn_app
+  # Enable explicit context caching so static_instruction is cached
+  context_cache_config:
+    enabled: true
+    # Cache scope can be: session or user (depending on ADK version semantics)
+    scope: session
+    # Time-to-live in seconds for cached static instructions
+    ttl_seconds: 3600
+  # Backward/forward compatibility for different ADK schema names
+  context_cache:
+    enabled: true
+    scope: session
+    ttl_seconds: 3600
+
+# Where to find the agent object in code
+root_agent:
+  module: app.agent
+  symbol: root_agent
+
+
