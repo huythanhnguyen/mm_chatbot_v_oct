@@ -187,9 +187,29 @@ export function ChatMessagesView({
                                            {productData.message}
                                          </p>
                                        )}
-                                       {productData && productData.products && (
-                                         <ProductGrid products={productData.products} />
-                                       )}
+                                      {productData && productData.groups && productData.groups.length > 0 ? (
+                                        <div className="space-y-4">
+                                          {productData.groups.map((group: any, idx: number) => (
+                                            <div key={idx} className="space-y-2">
+                                              {group.title && (
+                                                <div className="flex items-center justify-between px-1">
+                                                  <h3 className="text-sm sm:text-base font-semibold text-gray-800">
+                                                    {group.title}
+                                                  </h3>
+                                                  {group.meta?.categoryId && (
+                                                    <span className="text-[10px] sm:text-xs text-gray-400">ID: {group.meta.categoryId}</span>
+                                                  )}
+                                                </div>
+                                              )}
+                                              <ProductGrid products={group.products} />
+                                            </div>
+                                          ))}
+                                        </div>
+                                      ) : (
+                                        productData && productData.products && (
+                                          <ProductGrid products={productData.products} />
+                                        )
+                                      )}
                                      </>
                                    );
                                  })()}

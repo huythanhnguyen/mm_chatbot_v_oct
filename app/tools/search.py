@@ -72,7 +72,6 @@ def _to_minimal_product(product: Dict[str, Any]) -> Dict[str, Any]:
     return minimal
 
 
-# Removed _strip_accents function to preserve Vietnamese accents
 
 
 async def _antsomi_request(session: aiohttp.ClientSession, endpoint: str, params: Dict[str, Any]) -> Dict[str, Any]:
@@ -166,11 +165,20 @@ async def search_products_antsomi(query: str, user_id: str = DEFAULT_USER_ID,
         return {"results": [], "total": "0", "type": "", "categories": {}}
 
 
-async def search_products(keywords: str, tool_context: ToolContext, filters_json: Optional[str], page: Optional[int]) -> str:
+async def search_products(keywords: Optional[str] = None, tool_context: ToolContext = None, filters_json: Optional[str] = None, page: Optional[int] = None) -> str:
     """Main search function using Antsomi CDP 365 API Smart Search."""
     start_time = time.time()
     try:
         # Manage pagination state in ToolContext.state
+        # Normalize and backfill missing inputs from state when possible
+
+        # Ensure tool_context is usable
+        if tool_context is None:
+            # Create a minimal stand-in to avoid attribute errors
+            class _Dummy:
+                state: Dict[str, Any] = {}
+            tool_context = _Dummy()  # type: ignore
+
         # Parse filters from JSON string if provided
         filters: Optional[Dict[str, Any]] = None
         if isinstance(filters_json, str) and filters_json.strip():
@@ -182,6 +190,29 @@ async def search_products(keywords: str, tool_context: ToolContext, filters_json
                 filters = None  # invalid json → treat as no filters
 
         state_key = "antsomi.search_state"
+        # Backfill keywords from prior state if missing/empty
+        if not keywords or (isinstance(keywords, str) and not keywords.strip()):
+            try:
+                prev = getattr(tool_context, 'state', {}) or {}
+                if isinstance(prev, dict):
+                    if isinstance(prev.get(state_key), dict) and prev[state_key].get('keywords'):
+                        keywords = prev[state_key]['keywords']
+                    elif isinstance(prev.get('latest_search'), str):
+                        try:
+                            latest = json.loads(prev['latest_search'])
+                            if isinstance(latest, dict) and latest.get('query'):
+                                keywords = latest['query']
+                        except Exception:
+                            pass
+            except Exception:
+                pass
+        # Final guard: if still missing, return a user-friendly message instead of failing
+        if not keywords or not str(keywords).strip():
+            return json.dumps({
+                "type": "product-display",
+                "message": "Không có từ khóa tìm kiếm. Vui lòng nhập từ khóa (ví dụ: 'sữa tươi').",
+                "products": []
+            }, ensure_ascii=False)
         # If page is not specified or invalid, default to 1 (no auto-increment)
         try:
             page = int(page) if page is not None else 1

@@ -22,6 +22,15 @@ export interface ProductDisplayMessage {
   type: 'product-display';
   message: string;
   products: ProductCardData[];
+  // Optional grouped sections when returning multiple keyword result sets
+  groups?: Array<{
+    title: string; // e.g., keyword or category label
+    products: ProductCardData[];
+    meta?: {
+      keyword?: string;
+      categoryId?: string; // base64 id
+    };
+  }>;
 }
 
 export interface ProductGridProps {

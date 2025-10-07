@@ -18,7 +18,7 @@ try:
 except Exception:
     PRIMARY_MODEL = "gemini-2.5-flash-lite"
 
-# Prompts: use a concise instruction similar to DDV but for MMVN
+# Optimized instruction for faster responses
 MMVN_AGENT_INSTRUCTION = """Bạn là Trợ lý mua sắm MMVN. Luôn dùng công cụ để:
 - Tìm kiếm sản phẩm (search_products) - trả về 10 sản phẩm
 - Xem chi tiết (explore_product)
@@ -133,164 +133,27 @@ def log_agent_interaction(interaction_type: str, data: Dict[str, Any], tokens: O
 
 # Create agent with static_instruction as types.Content for ADK 1.15
 from google.genai import types
-from google import genai
-
-def _static_cache_before_model(callback_context, llm_request):
-    """Attach explicit cached_content for static instruction per Gemini docs.
-
-    - Creates cache once per session (stores cache name in session state)
-    - Points request config to cached_content each turn
-    - Clears system_instruction to avoid duplicating static text when cache is used
-    """
-    try:
-        state = callback_context.state or {}
-        cache_name = state.get('mmvn_static_cache_name')
-
-        # Prefer model from request if available; fallback to an explicit-suffix model via env override
-        request_model = getattr(getattr(llm_request, 'config', None), 'model', None) or getattr(llm_request, 'model', None)
-        explicit_model_override = os.getenv('EXPLICIT_CACHE_MODEL')  # e.g. models/gemini-2.0-flash-001
-        cache_model = explicit_model_override or request_model or PRIMARY_MODEL
-
-        # Create cache once per session
-        if not cache_name:
-            client = genai.Client()
-            cache = client.caches.create(
-                model=cache_model,
-                config=types.CreateCachedContentConfig(
-                    system_instruction=MMVN_AGENT_INSTRUCTION,
-                    ttl=os.getenv('EXPLICIT_CACHE_TTL', '3600s'),
-                ),
-            )
-            cache_name = cache.name
-            state['mmvn_static_cache_name'] = cache_name
-            callback_context.state = state
-            logger.info(f"[StaticCache] Created cache for static_instruction model={cache_model} name={cache_name}")
-
-        # Point this request to cached content
-        if hasattr(llm_request, 'config') and llm_request.config is not None:
-            setattr(llm_request.config, 'cached_content', cache_name)
-            # Avoid sending duplicate static system_instruction when cache is used
-            if hasattr(llm_request.config, 'system_instruction'):
-                setattr(llm_request.config, 'system_instruction', None)
-        logger.info("[StaticCache] Using cached_content=%s", cache_name)
-    except Exception as e:
-        # Fail open: continue without explicit cache
-        logger.warning(f"[StaticCache] Failed to set explicit cache: {e}")
 
 
-base_agent = Agent(
+# Direct agent creation without wrapper overhead
+root_agent = Agent(
     model=PRIMARY_MODEL,
     name="mmvn_agent",
     static_instruction=types.Content(
         parts=[types.Part(text=MMVN_AGENT_INSTRUCTION)]
-    ),  # ADK 1.15 requires types.Content
+    ),
     tools=[
         search_products,
         explore_product,
         compare_products,
-        load_memory,  # ADK memory tool
-        memorize,  # Custom memory tools
+        load_memory,
+        memorize,
         memorize_list,
         get_memory,
         store_search_memory,
     ],
     output_key="mmvn_agent",
-    before_model_callback=[_static_cache_before_model],
 )
-
-# Optional: expose a helper for App YAML loaders that want an Agent directly
-def get_root_agent():
-    return root_agent
-
-# Create wrapper class that extends Agent for ADK compatibility
-class MemoryAgentWrapper(Agent):
-    def __init__(self, base_agent):
-        # Initialize with base_agent's parameters
-        super().__init__(
-            model=base_agent.model,
-            name=base_agent.name,
-            static_instruction=base_agent.static_instruction,
-            tools=base_agent.tools,
-            output_key=base_agent.output_key,
-            before_model_callback=getattr(base_agent, 'before_model_callback', None),
-            after_model_callback=getattr(base_agent, 'after_model_callback', None),
-        )
-        # Store base_agent reference using object.__setattr__ to bypass Pydantic
-        object.__setattr__(self, 'base_agent', base_agent)
-        logger.info(f"MemoryAgentWrapper initialized with static_instruction: {bool(self.static_instruction)}")
-    
-    async def run(self, request, **kwargs):
-        """Run with dynamic context addition to existing static instruction"""
-        try:
-            # Get user query
-            user_query = request.parts[0].text if request.parts else ""
-            
-            # Search memory for context using base_agent
-            memory_context = ""
-            try:
-                search_result = await self.base_agent.search_memory(query=user_query)
-                if search_result and search_result.memories:
-                    # Extract relevant memories
-                    memory_parts = []
-                    for memory in search_result.memories[:3]:  # Limit to 3 memories
-                        try:
-                            memory_text = str(memory)
-                            if memory_text.startswith('{'):
-                                memory_data = json.loads(memory_text)
-                                if 'agent_summary' in memory_data:
-                                    memory_parts.append(memory_data['agent_summary'])
-                        except:
-                            continue
-                    
-                    if memory_parts:
-                        memory_context = "Context from previous conversations: " + " | ".join(memory_parts)
-                        logger.info(f"Memory context found: {len(memory_parts)} memories")
-            except Exception as e:
-                logger.debug(f"Memory search failed: {e}")
-            
-            # Create dynamic instruction with context and user input
-            # The static_instruction is already set in base_agent, we just add dynamic parts
-            dynamic_parts = []
-            if memory_context:
-                dynamic_parts.append(memory_context)
-            dynamic_parts.append(f"User: {user_query}")
-            
-            # Log static instruction usage
-            logger.info(f"Static instruction present: {bool(self.static_instruction)}")
-            logger.info(f"Memory context: {bool(memory_context)}")
-            
-            # Create new request with dynamic parts added to existing static instruction
-            from google.genai import types
-            enhanced_request = types.Content(
-                parts=[types.Part(text="\n\n".join(dynamic_parts))],
-                role=request.role
-            )
-            
-            # Call parent run method (static_instruction is already handled by base_agent)
-            response = await super().run(enhanced_request, **kwargs)
-            
-            # Store memory for future use
-            try:
-                response_text = response.parts[0].text if response.parts else ""
-                from app.tools.memory_tools import save_persistable_turn
-                save_persistable_turn(
-                    session_id=kwargs.get('session_id', 'unknown'),
-                    user_text=user_query,
-                    model_text=response_text,
-                )
-            except Exception as e:
-                logger.debug(f"Memory storage failed: {e}")
-            
-            return response
-            
-        except Exception as e:
-            logger.error(f"Error in MemoryAgentWrapper: {e}")
-            # Fallback to original request
-            return await super().run(request, **kwargs)
-
-# Create wrapper instance with memory handling
-root_agent = MemoryAgentWrapper(base_agent)
-logger.info(f"Created MemoryAgentWrapper with static_instruction: {bool(root_agent.static_instruction)}")
 
 # Required export for ADK web UI
 agent = root_agent

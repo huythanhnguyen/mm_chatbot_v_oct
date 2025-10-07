@@ -5,7 +5,7 @@ Simple Explore Tool for MMVN - direct GraphQL to online.mmvietnam.com
 import logging
 import json
 import time
-from typing import Dict, Any
+from typing import Dict, Any, List
 from google.adk.tools import ToolContext
 import aiohttp
 import urllib.parse
@@ -90,27 +90,48 @@ async def explore_product(product_id: str, tool_context: ToolContext) -> str:
         }
         logger.info(f"TOOL_USAGE: {json.dumps(log_entry, ensure_ascii=False)}")
         
-        safe_id = product_id.replace('"', '\\"')
-        gql = (
-            "query { products(filter: { sku: { eq: \"%s\" } }, pageSize: 1, currentPage: 1) { items { "
-            "id sku name url_key url_suffix url_path "
-            "price { regularPrice { amount { currency value } } } "
-            "price_range { maximum_price { final_price { currency value } discount { percent_off } } } "
-            "small_image { url } unit_ecom description { html } } } }"
-        ) % safe_id
+        # Support multiple SKUs separated by comma/space; fallback to single
+        raw = (product_id or "").strip()
+        sku_list: List[str] = [s.strip() for s in raw.replace("\n", ",").replace(";", ",").split(",") if s.strip()]
+        sku_list = sku_list[:12] if sku_list else []
+
+        if len(sku_list) <= 1:
+            safe_id = (sku_list[0] if sku_list else raw).replace('"', '\\"')
+            gql = (
+                "query { products(filter: { sku: { eq: \"%s\" } }, pageSize: 1, currentPage: 1) { items { "
+                "id sku name url_key url_suffix url_path "
+                "price { regularPrice { amount { currency value } } } "
+                "price_range { maximum_price { final_price { currency value } discount { percent_off } } } "
+                "small_image { url } unit_ecom description { html } } } }"
+            ) % safe_id
+        else:
+            # Batch fetch with IN filter
+            # Quote each SKU safely for GraphQL IN list
+            safe_list = ", ".join([json.dumps(s) for s in sku_list])
+            gql = (
+                "query { products(filter: { sku: { in: [%s] } }, pageSize: %d, currentPage: 1) { items { "
+                "id sku name url_key url_suffix url_path "
+                "price { regularPrice { amount { currency value } } } "
+                "price_range { maximum_price { final_price { currency value } discount { percent_off } } } "
+                "small_image { url } unit_ecom description { html } } } }"
+            ) % (safe_list, max(1, len(sku_list)))
 
         async with aiohttp.ClientSession() as session:
             data = await _graphql_get(session, gql)
 
         items = data.get("data", {}).get("products", {}).get("items", [])
         if not items:
-            return f"Không tìm thấy sản phẩm với ID: {product_id}"
+            return json.dumps({
+                "type": "product-display",
+                "message": "Không tìm thấy sản phẩm theo yêu cầu",
+                "products": []
+            }, ensure_ascii=False)
 
-        minimal = _to_minimal_product(items[0])
+        minimals = [_to_minimal_product(p) for p in items]
         json_response = {
             "type": "product-display",
-            "message": f"Chi tiết sản phẩm: {minimal.get('name', 'N/A')}",
-            "products": [minimal],
+            "message": ("Chi tiết sản phẩm" if len(minimals) == 1 else "Danh sách sản phẩm đã chọn"),
+            "products": minimals,
         }
         # Log tool completion
         end_time = time.time()
@@ -119,7 +140,7 @@ async def explore_product(product_id: str, tool_context: ToolContext) -> str:
             "tool": "explore_product",
             "output": {
                 "product_found": bool(items),
-                "product_name": minimal.get('name', 'N/A') if items else None,
+                "count": len(items),
                 "processing_time": end_time - start_time
             }
         }
