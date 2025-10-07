@@ -125,3 +125,4 @@ api_server.log
 Thumbs.db
 mmsearch.pem
 api-worker-windows (1)
+artifacts/

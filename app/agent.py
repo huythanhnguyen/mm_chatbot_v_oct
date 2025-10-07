@@ -101,6 +101,7 @@ from app.tools.search import search_products
 from app.tools.explore import explore_product
 from app.tools.compare import compare_products
 from app.tools.memory_tools import memorize, memorize_list, get_memory, store_search_memory
+from app.tools.dialog_tools import save_dialog_summary, set_user_preferences
 
 logger = logging.getLogger(__name__)
 
@@ -151,6 +152,8 @@ root_agent = Agent(
         memorize_list,
         get_memory,
         store_search_memory,
+        save_dialog_summary,
+        set_user_preferences,
     ],
     output_key="mmvn_agent",
 )

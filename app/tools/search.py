@@ -13,6 +13,15 @@ from google.adk.tools import ToolContext
 import aiohttp
 import urllib.parse
 from .context_optimized_tools import context_optimizer
+from .session_state import (
+    set_current_search,
+    get_current_search,
+    set_pagination,
+    get_pagination,
+    get_last_user_question,
+)
+from .artifact_tools import write_json_artifact, artifact_reference
+from app.persistence_sqlite import save_search, save_artifact
 
 logger = logging.getLogger(__name__)
 
@@ -190,12 +199,19 @@ async def search_products(keywords: Optional[str] = None, tool_context: ToolCont
                 filters = None  # invalid json → treat as no filters
 
         state_key = "antsomi.search_state"
-        # Backfill keywords from prior state if missing/empty
+        # Backfill keywords from session_state first, then legacy keys
         if not keywords or (isinstance(keywords, str) and not keywords.strip()):
             try:
                 prev = getattr(tool_context, 'state', {}) or {}
                 if isinstance(prev, dict):
-                    if isinstance(prev.get(state_key), dict) and prev[state_key].get('keywords'):
+                    # session_state current_search
+                    cs = get_current_search(prev)
+                    if isinstance(cs, dict) and cs.get('keywords'):
+                        keywords = cs.get('keywords')
+                        if not filters:
+                            filters = cs.get('filters') or None
+                    # legacy
+                    if (not keywords) and isinstance(prev.get(state_key), dict) and prev[state_key].get('keywords'):
                         keywords = prev[state_key]['keywords']
                     elif isinstance(prev.get('latest_search'), str):
                         try:
@@ -213,15 +229,22 @@ async def search_products(keywords: Optional[str] = None, tool_context: ToolCont
                 "message": "Không có từ khóa tìm kiếm. Vui lòng nhập từ khóa (ví dụ: 'sữa tươi').",
                 "products": []
             }, ensure_ascii=False)
-        # If page is not specified or invalid, default to 1 (no auto-increment)
+        # If page is not specified or invalid, pull from session pagination or default to 1
         try:
-            page = int(page) if page is not None else 1
+            if page is not None:
+                page = int(page)
+            else:
+                pagination = get_pagination(tool_context.state)
+                page = int(pagination.get("page", 1))
         except Exception:
             page = 1
         if page <= 0:
             page = 1
 
         if hasattr(tool_context, 'state'):
+            # persist to both structured session and legacy key for backward compat
+            set_current_search(tool_context.state, keywords=keywords, filters=filters)
+            set_pagination(tool_context.state, page=page)
             tool_context.state[state_key] = {
                 'keywords': keywords,
                 'filters': filters,
@@ -342,6 +365,38 @@ async def search_products(keywords: Optional[str] = None, tool_context: ToolCont
                     json_response = context_optimizer.optimize_search_response(fallback_data, fallback_query)
                     break
         
+        # Persist artifacts: search history + important products (top 10-20)
+        try:
+            session_id = str(getattr(getattr(tool_context, 'session', None), 'id', 'unknown'))
+            important_products = minimal_products[:20]
+            search_artifact_payload = {
+                "type": "search_history",
+                "query": keywords,
+                "filters": filters or {},
+                "page": page,
+                "intent": getattr(getattr(tool_context, 'state', {}), 'get', lambda *_: {})('mmvn_session', {}).get('context', {}).get('intent', ''),
+                "selected_answer": None,
+                "user_question": get_last_user_question(tool_context.state),
+                "metadata": {
+                    "total": total,
+                    "search_type": search_type,
+                    "categories": categories,
+                },
+                "important_products": important_products,
+                "raw_count": len(results),
+                "created_at": time.time(),
+            }
+            path = write_json_artifact(search_artifact_payload, category="search", session_id=session_id)
+            from .session_state import add_artifact_ref
+            add_artifact_ref(tool_context.state, "search", artifact_reference(path))
+            try:
+                save_artifact(session_id, "search", path, meta={"query": keywords})
+                save_search(session_id, keywords, filters or {}, page=page, total=total, search_type=search_type, categories=categories, top_products=important_products)
+            except Exception:
+                pass
+        except Exception:
+            pass
+
         # Log tool completion
         end_time = time.time()
         log_entry = {

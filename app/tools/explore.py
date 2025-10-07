@@ -7,6 +7,10 @@ import json
 import time
 from typing import Dict, Any, List
 from google.adk.tools import ToolContext
+from .session_state import set_conversation_context
+from .artifact_tools import write_json_artifact, artifact_reference
+from app.persistence_sqlite import save_explore, save_artifact
+from .session_state import get_last_user_question
 import aiohttp
 import urllib.parse
 
@@ -133,6 +137,36 @@ async def explore_product(product_id: str, tool_context: ToolContext) -> str:
             "message": ("Chi tiết sản phẩm" if len(minimals) == 1 else "Danh sách sản phẩm đã chọn"),
             "products": minimals,
         }
+        try:
+            set_conversation_context(tool_context.state, {
+                "last_action": "explore",
+                "num_products": len(minimals)
+            })
+        except Exception:
+            pass
+        # Persist artifact: explored products (as important selection)
+        try:
+            session_id = str(getattr(getattr(tool_context, 'session', None), 'id', 'unknown'))
+            payload = {
+                "type": "explore_selection",
+                "input": product_id,
+                "products": minimals,
+                "intent": "explore",
+                "selected_answer": None,
+                "user_question": get_last_user_question(tool_context.state),
+                "created_at": time.time(),
+            }
+            path = write_json_artifact(payload, category="explore", session_id=session_id)
+            from .session_state import add_artifact_ref
+            add_artifact_ref(tool_context.state, "explore", artifact_reference(path))
+            try:
+                save_artifact(session_id, "explore", path)
+                save_explore(session_id, product_id, minimals)
+            except Exception:
+                pass
+        except Exception:
+            pass
+
         # Log tool completion
         end_time = time.time()
         log_entry = {

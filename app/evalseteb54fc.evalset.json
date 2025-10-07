@@ -1,0 +1,550 @@
+{
+  "eval_set_id": "evalseteb54fc",
+  "name": "evalseteb54fc",
+  "eval_cases": [
+    {
+      "eval_id": "casee61b2a",
+      "conversation": [
+        {
+          "invocation_id": "e-f6327cfc-ed39-4420-a5ee-8ca69c927767",
+          "user_content": {
+            "parts": [
+              {
+                "text": "tìm gà cá bò"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Dưới đây là các sản phẩm gà, cá và bò mà tôi tìm thấy:\n\n**Gà:**\n* chân gà rút xương đông lạnh, 1kg\n* cánh giữa gà đông lạnh nhập khẩu\n* cánh gà công nghiệp cp-vn, 1kg\n* cánh gà công nghiệp lbc\n* gà công nghiệp bọng lbc\n* gà nướng muối ớt\n* gà nướng sốt tiêu tỏi\n* gà ta bình định\n* gà thả vườn quay\n* gà ác tn\n\n**Cá:**\n* cá bớp giò đầu cá tươi\n* cá chẽm tươi, 3-5 kg/con\n* cá cờ gòn, 500g\n* cá diêu hồng làm sạch, 0.5-0.7 kg/con\n* cá diêu hồng làm sạch, 0.5-0.7 kg/con\n* cá diêu hồng phi lê còn da size xo\n* cá diêu hồng sống, 0.5-0.8 kg/con\n* cá hồi nauy lr we are fresh tươi, 6-7 kg\n* cá hồi nauy we are fresh phi lê đuôi tươi\n* cá hồi nhập khẩu xông khói amigo, 1kg\n\n**Bò:**\n* ba chỉ bò cắt lát xuất xứ mỹ, 500g\n* burger bò xay đông lạnh angus, 150g\n* burger bò xay đông lạnh angus, 200g\n* bắp bò đông lạnh we are fresh xuất xứ úc, 500g\n* bắp cá lóc bò đông lạnh xuất xứ úc\n* bắp hoa bò đông lạnh cắt lát xuất xứ canada, 250g\n* bắp đùi/tay bò nguyên\n* gầu bò tinh loại 1\n* gầu bò tươi pc, 250g\n* nạc bò xay loại 1"
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "mmvn_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "adk-87d78db5-e326-461e-a3d1-15a9aae586af",
+                        "args": {
+                          "keywords": "gà",
+                          "filters_json": "{\"category\": \"thực phẩm tươi sống\"}"
+                        },
+                        "name": "search_products"
+                      }
+                    },
+                    {
+                      "function_call": {
+                        "id": "adk-801cffbb-6f72-4575-9932-88b7fdec2b8f",
+                        "args": {
+                          "filters_json": "{\"category\": \"thực phẩm tươi sống\"}",
+                          "keywords": "cá"
+                        },
+                        "name": "search_products"
+                      }
+                    },
+                    {
+                      "function_call": {
+                        "id": "adk-ab8f681a-bfc6-4ace-8bdc-d7d82a6839e3",
+                        "args": {
+                          "keywords": "bò",
+                          "filters_json": "{\"category\": \"thực phẩm tươi sống\"}"
+                        },
+                        "name": "search_products"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "mmvn_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-87d78db5-e326-461e-a3d1-15a9aae586af",
+                        "name": "search_products",
+                        "response": {
+                          "result": "{\"type\": \"product-display\", \"message\": \"Tìm thấy 10 sản phẩm phù hợp\", \"products\": [{\"id\": \"434448_10010\", \"name\": \"chân gà rút xương đông lạnh, 1kg\", \"price\": {\"current\": 116000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/4/3/434448_20250915101839.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/chan-ga-rut-xuong-dong-lanh-1kg.html?atm_term=th%E1%BB%8Bt%20g%C3%A0\"}, {\"id\": \"389887_10010\", \"name\": \"cánh giữa gà đông lạnh nhập khẩu\", \"price\": {\"current\": 119000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/8/389887_1.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/canh-giua-ga-dong-lanh-nhap-khau.html\"}, {\"id\": \"137956_10010\", \"name\": \"cánh gà công nghiệp cp-vn, 1kg\", \"price\": {\"current\": 106000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/1/3/137956.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/canh-ga-cong-nghiep-cp-vn-1kg.html\"}, {\"id\": \"225666_10010\", \"name\": \"cánh gà công nghiệp lbc\", \"price\": {\"current\": 109000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/2/2/225666.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/canh-ga-cong-nghiep-lbc.html\"}, {\"id\": \"223075_10010\", \"name\": \"gà công nghiệp bọng lbc\", \"price\": {\"current\": 81500.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/2/2/223075.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ga-cong-nghiep-bong-lbc.html\"}, {\"id\": \"337834_10010\", \"name\": \"gà nướng muối ớt\", \"price\": {\"current\": 158000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/3/337834.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ga-nuong-muoi-ot.html\"}, {\"id\": \"412624_10010\", \"name\": \"gà nướng sốt tiêu tỏi\", \"price\": {\"current\": 99000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/4/1/412624.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ga-nuong-sot-tieu-toi-412624.html?atm_term=t%E1%BB%8Fi%20b%C4%83m\"}, {\"id\": \"391292_10010\", \"name\": \"gà ta bình định\", \"price\": {\"current\": 149000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/3/9/391292.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ga-ta-binh-dinh.html?atm_term=g%C3%A0%20ta\"}, {\"id\": \"165643_10010\", \"name\": \"gà thả vườn quay\", \"price\": {\"current\": 139000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/1/6/165643.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ga-tha-vuon-quay-nguyen-con-165643.html\"}, {\"id\": \"258169_10010\", \"name\": \"gà ác tn\", \"price\": {\"current\": 189000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/2/5/258169.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ga-ac-258169.html?atm_term=g%C3%A0%20%C3%A1c\"}], \"metadata\": {\"total\": \"80\", \"type\": \"\", \"showing\": 10}}"
+                        }
+                      }
+                    },
+                    {
+                      "function_response": {
+                        "id": "adk-801cffbb-6f72-4575-9932-88b7fdec2b8f",
+                        "name": "search_products",
+                        "response": {
+                          "result": "{\"type\": \"product-display\", \"message\": \"Tìm thấy 10 sản phẩm phù hợp\", \"products\": [{\"id\": \"188232_10010\", \"name\": \"cá bớp giò đầu cá tươi\", \"price\": {\"current\": 95000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/1/8/188232.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/ca-bop-gio-dau-ca-tuoi-188232.html\"}, {\"id\": \"174014_10010\", \"name\": \"cá chẽm tươi, 3-5 kg/con\", \"price\": {\"current\": 145000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/1/7/174014.png\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ca-chem-tuoi-3-5-kg-con.html\"}, {\"id\": \"338208_10010\", \"name\": \"cá cờ gòn, 500g\", \"price\": {\"current\": 91000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/3/3/338208.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ca-co-gon-500g.html\"}, {\"id\": \"178210_10010\", \"name\": \"cá diêu hồng làm sạch, 0.5-0.7 kg/con\", \"price\": {\"current\": 99000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/1/7/178210.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ca-dieu-hong-song-lam-sach-0-5-0-7-kg-con.html\"}, {\"id\": \"32955_10010\", \"name\": \"cá diêu hồng làm sạch, 0.5-0.7 kg/con\", \"price\": {\"current\": 92000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/3/2/32955.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/ca-dieu-hong-lam-sach-0-5-0-7-kg-con.html\"}, {\"id\": \"170513_10010\", \"name\": \"cá diêu hồng phi lê còn da size xo\", \"price\": {\"current\": 145000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/1/7/170513.1.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ca-dieu-hong-phi-le-con-da-size-xo.html?atm_term=h%E1%BB%93ng\"}, {\"id\": \"184840_10010\", \"name\": \"cá diêu hồng sống, 0.5-0.8 kg/con\", \"price\": {\"current\": 79000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/1/8/184840.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ca-dieu-hong-song-0-5-0-8-kg-con.html\"}, {\"id\": \"321026_10010\", \"name\": \"cá hồi nauy lr we are fresh tươi, 6-7 kg\", \"price\": {\"current\": 429000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/2/321026.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ca-hoi-nauy-lr-we-are-fresh-tuoi-6-7-kg.html\"}, {\"id\": \"384332_10010\", \"name\": \"cá hồi nauy we are fresh phi lê đuôi tươi\", \"price\": {\"current\": 469000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/3/8/384332.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/phi-le-duoi-ca-hoi-nauy-tuoi.html\"}, {\"id\": \"162295_10010\", \"name\": \"cá hồi nhập khẩu xông khói amigo, 1kg\", \"price\": {\"current\": 962000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/1/6/162295.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/ca-hoi-nhap-khau-xong-khoi-amigo-1kg.html\"}], \"metadata\": {\"total\": \"177\", \"type\": \"\", \"showing\": 10}}"
+                        }
+                      }
+                    },
+                    {
+                      "function_response": {
+                        "id": "adk-ab8f681a-bfc6-4ace-8bdc-d7d82a6839e3",
+                        "name": "search_products",
+                        "response": {
+                          "result": "{\"type\": \"product-display\", \"message\": \"Tìm thấy 10 sản phẩm phù hợp\", \"products\": [{\"id\": \"213306_10010\", \"name\": \"ba chỉ bò cắt lát xuất xứ mỹ, 500g\", \"price\": {\"current\": 157000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/2/1/213306_1.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ba-chi-bo-cat-lat-xuat-xu-my-500g.html\"}, {\"id\": \"357171_10010\", \"name\": \"burger bò xay đông lạnh angus, 150g\", \"price\": {\"current\": 73000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/5/357171.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/burger-bo-dong-lanh-xay-angus-150g.html\"}, {\"id\": \"357179_10010\", \"name\": \"burger bò xay đông lạnh angus, 200g\", \"price\": {\"current\": 95000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/5/357179.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/burger-bo-dong-lanh-xay-angus-200g.html\"}, {\"id\": \"413253_10010\", \"name\": \"bắp bò đông lạnh we are fresh xuất xứ úc, 500g\", \"price\": {\"current\": 147000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/1/413253.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/bap-bo-dong-lanh-we-are-fresh-xuat-xu-uc-500g.html\"}, {\"id\": \"256545_10010\", \"name\": \"bắp cá lóc bò đông lạnh xuất xứ úc\", \"price\": {\"current\": 219000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/2/5/256545.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/aus-frz-beef-chuck-tender-waf.html\"}, {\"id\": \"417312_10010\", \"name\": \"bắp hoa bò đông lạnh cắt lát xuất xứ canada, 250g\", \"price\": {\"current\": 125000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/1/417312.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/bap-hoa-bo-dong-lanh-cat-lat-xuat-xu-canada-250g.html\"}, {\"id\": \"206530_10010\", \"name\": \"bắp đùi/tay bò nguyên\", \"price\": {\"current\": 259000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/2/0/206530.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/bap-dui-tay-bo-nguyen-206530.html\"}, {\"id\": \"2328_10010\", \"name\": \"gầu bò tinh loại 1\", \"price\": {\"current\": 250000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/2/3/2328_1.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/gau-bo-tinh-loai-1-2328.html?atm_term=th%E1%BB%8Bt%20b%C3%B2%20vinabeef\"}, {\"id\": \"401044_10010\", \"name\": \"gầu bò tươi pc, 250g\", \"price\": {\"current\": 109000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/0/401044.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/gau-bo-tuoi-pc-250g.html\"}, {\"id\": \"23945_10010\", \"name\": \"nạc bò xay loại 1\", \"price\": {\"current\": 276000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/2/3/23945.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/beef-minced-23945.html\"}], \"metadata\": {\"total\": \"110\", \"type\": \"\", \"showing\": 10}}"
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              }
+            ]
+          },
+          "creation_timestamp": 1759844589.545414
+        },
+        {
+          "invocation_id": "e-fefea105-f8b8-41df-9aab-05d49bdd0f31",
+          "user_content": {
+            "parts": [
+              {
+                "text": "tìm thịt heo thịt vịt thịt bò"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Dưới đây là các sản phẩm thịt heo, thịt vịt và thịt bò tôi tìm thấy:\n\n**Thịt heo:**\n* thịt heo rừng, 500g\n* ba rọi heo - ba chỉ loại 2\n* ba rọi heo cắt lát đông lạnh, 500g\n* ba rọi heo đông lạnh nhập khẩu\n* bao tử heo\n* cốt lết heo\n* dựng heo vietgap we are fresh loại 1\n* giò heo rút xương vietgap we are fresh\n* heo sữa đông lạnh, 3.0-3.5kg\n* lưỡi heo\n\n**Thịt vịt:** (Tôi không tìm thấy sản phẩm nào có tên \"thịt vịt\" trong danh mục thực phẩm tươi sống. Có thể bạn muốn tìm các sản phẩm chế biến từ vịt hoặc các loại gia cầm khác?)\n\n**Thịt bò:**\n* thịt bò tái pacow, 250g\n* ba chỉ bò cắt lát xuất xứ mỹ, 500g\n* burger bò xay đông lạnh angus, 150g\n* burger bò xay đông lạnh angus, 200g\n* bắp bò đông lạnh we are fresh xuất xứ úc, 500g\n* bắp cá lóc bò đông lạnh xuất xứ úc\n* bắp hoa bò đông lạnh cắt lát xuất xứ canada, 250g\n* bắp đùi/tay bò nguyên\n* gầu bò tinh loại 1\n* gầu bò tươi pc, 250g"
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "mmvn_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "adk-f3efaad8-a974-4e54-bc2f-9ca1bdaca2ba",
+                        "args": {
+                          "keywords": "thịt heo",
+                          "filters_json": "{\"category\": \"thực phẩm tươi sống\"}"
+                        },
+                        "name": "search_products"
+                      }
+                    },
+                    {
+                      "function_call": {
+                        "id": "adk-1f637a4e-ed3f-47b2-8d67-dd23f718a9f9",
+                        "args": {
+                          "filters_json": "{\"category\": \"thực phẩm tươi sống\"}",
+                          "keywords": "thịt vịt"
+                        },
+                        "name": "search_products"
+                      }
+                    },
+                    {
+                      "function_call": {
+                        "id": "adk-43fdc2bb-2040-4160-a470-6899e96e1872",
+                        "args": {
+                          "keywords": "thịt bò",
+                          "filters_json": "{\"category\": \"thực phẩm tươi sống\"}"
+                        },
+                        "name": "search_products"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "mmvn_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-f3efaad8-a974-4e54-bc2f-9ca1bdaca2ba",
+                        "name": "search_products",
+                        "response": {
+                          "result": "{\"type\": \"product-display\", \"message\": \"Tìm thấy 10 sản phẩm phù hợp\", \"products\": [{\"id\": \"152358_10010\", \"name\": \"thịt heo rừng, 500g\", \"price\": {\"current\": 199000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/1/5/152358_3.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/thit-heo-rung-500g.html\"}, {\"id\": \"206513_10010\", \"name\": \"ba rọi heo - ba chỉ loại 2\", \"price\": {\"current\": 186900.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/2/0/206513-2.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ba-roi-heo-ba-chi-loai-2.html\"}, {\"id\": \"451908_10010\", \"name\": \"ba rọi heo cắt lát đông lạnh, 500g\", \"price\": {\"current\": 89000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/5/451908.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ba-roi-heo-cat-lat-dong-lanh-500g.html\"}, {\"id\": \"225298_10010\", \"name\": \"ba rọi heo đông lạnh nhập khẩu\", \"price\": {\"current\": 135000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/2/2/225298.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ba-roi-heo-dong-lanh-nhap-khau.html\"}, {\"id\": \"19643_10010\", \"name\": \"bao tử heo\", \"price\": {\"current\": 229000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/1/9/19643.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/bao-tu-heo.html\"}, {\"id\": \"206511_10010\", \"name\": \"cốt lết heo\", \"price\": {\"current\": 159000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/w/y/wysiwyg_b2c_product_1901_206511.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/cot-let-heo.html\"}, {\"id\": \"378659_10010\", \"name\": \"dựng heo vietgap we are fresh loại 1\", \"price\": {\"current\": 122000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/7/378659.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/dung-heo-loai-1-we-are-fresh-chuan-vietgap.html\"}, {\"id\": \"401916_10010\", \"name\": \"giò heo rút xương vietgap we are fresh\", \"price\": {\"current\": 139000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/4/0/401916.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/gio-heo-rut-xuong-401916.html\"}, {\"id\": \"30113_10010\", \"name\": \"heo sữa đông lạnh, 3.0-3.5kg\", \"price\": {\"current\": 420000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/0/30113_1_1.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/heo-sua-dong-lanh-3-0-3-5kg.html\"}, {\"id\": \"19652_10010\", \"name\": \"lưỡi heo\", \"price\": {\"current\": 219000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/1/9/19652.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/luoi-heo.html\"}], \"metadata\": {\"total\": \"330\", \"type\": \"\", \"showing\": 10}}"
+                        }
+                      }
+                    },
+                    {
+                      "function_response": {
+                        "id": "adk-1f637a4e-ed3f-47b2-8d67-dd23f718a9f9",
+                        "name": "search_products",
+                        "response": {
+                          "result": "{\"type\": \"product-display\", \"message\": \"Tìm thấy 10 sản phẩm phù hợp\", \"products\": [{\"id\": \"399038_10010\", \"name\": \"lẩu tứ xuyên thịt ba chỉ bò đông lạnh, 1.3kg\", \"price\": {\"current\": 396000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/9/399038.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/lau-tu-xuyen-thit-ba-chi-bo-dong-lanh-1-3kg.html\"}, {\"id\": \"2115_10010\", \"name\": \"thịt bê thui\", \"price\": {\"current\": 269000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/j/p/jpeg-optimizer_2115_2.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/thit-be-thui.html\"}, {\"id\": \"401042_10010\", \"name\": \"thịt bò tái pacow, 250g\", \"price\": {\"current\": 129000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/4/0/401042_1.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/thit-bo-tai-pc-250g.html?atm_term=th%E1%BB%8Bt%20c%E1%BB%91t%20l%E1%BA%BFt\"}, {\"id\": \"16303_10010\", \"name\": \"thịt bò vụn loại 1\", \"price\": {\"current\": 169000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/1/6/16303.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/thit-bo-vun-loai-1-16303.html?atm_term=th%E1%BB%8Bt%20b%C3%B2\"}, {\"id\": \"401825_10010\", \"name\": \"thịt bò xay xuất xứ úc, 300g\", \"price\": {\"current\": 132000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/4/0/401825.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/thit-bo-xay-xuat-xu-uc-300g.html?atm_term=th%E1%BB%8Bt%20b%C3%B2%20t%C6%B0%C6%A1i%20pacow\"}, {\"id\": \"333147_10010\", \"name\": \"thịt heo quay da giòn\", \"price\": {\"current\": 239000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/3/3/333147.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/thit-heo-quay-da-gion.html\"}, {\"id\": \"152358_10010\", \"name\": \"thịt heo rừng, 500g\", \"price\": {\"current\": 199000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/1/5/152358_3.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/thit-heo-rung-500g.html\"}, {\"id\": \"218030_10010\", \"name\": \"thịt trâu vụn 66 đông lạnh xuất xứ ấn độ we are fresh\", \"price\": {\"current\": 97000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/2/1/218030_1.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/thit-trau-vun-66-dong-lanh-xuat-xu-an-do.html?atm_term=th%E1%BB%8Bt%20c%E1%BB%91t%20l%E1%BA%BFt\"}, {\"id\": \"401046_10010\", \"name\": \"thịt vai bò tươi pacow, 250g\", \"price\": {\"current\": 129000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/0/401046_1.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/thit-vai-bo-tuoi-pc-250g.html\"}, {\"id\": \"206516_10010\", \"name\": \"thịt vai heo\", \"price\": {\"current\": 159900.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/2/0/206516.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/thit-vai-heo.html\"}], \"metadata\": {\"total\": \"302\", \"type\": \"\", \"showing\": 10}}"
+                        }
+                      }
+                    },
+                    {
+                      "function_response": {
+                        "id": "adk-43fdc2bb-2040-4160-a470-6899e96e1872",
+                        "name": "search_products",
+                        "response": {
+                          "result": "{\"type\": \"product-display\", \"message\": \"Tìm thấy 10 sản phẩm phù hợp\", \"products\": [{\"id\": \"401825_10010\", \"name\": \"thịt bò xay xuất xứ úc, 300g\", \"price\": {\"current\": 132000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/4/0/401825.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/thit-bo-xay-xuat-xu-uc-300g.html?atm_term=th%E1%BB%8Bt%20b%C3%B2%20t%C6%B0%C6%A1i%20pacow\"}, {\"id\": \"213306_10010\", \"name\": \"ba chỉ bò cắt lát xuất xứ mỹ, 500g\", \"price\": {\"current\": 157000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/2/1/213306_1.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ba-chi-bo-cat-lat-xuat-xu-my-500g.html\"}, {\"id\": \"357171_10010\", \"name\": \"burger bò xay đông lạnh angus, 150g\", \"price\": {\"current\": 73000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/5/357171.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/burger-bo-dong-lanh-xay-angus-150g.html\"}, {\"id\": \"357179_10010\", \"name\": \"burger bò xay đông lạnh angus, 200g\", \"price\": {\"current\": 95000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/5/357179.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/burger-bo-dong-lanh-xay-angus-200g.html\"}, {\"id\": \"413253_10010\", \"name\": \"bắp bò đông lạnh we are fresh xuất xứ úc, 500g\", \"price\": {\"current\": 147000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/1/413253.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/bap-bo-dong-lanh-we-are-fresh-xuat-xu-uc-500g.html\"}, {\"id\": \"256545_10010\", \"name\": \"bắp cá lóc bò đông lạnh xuất xứ úc\", \"price\": {\"current\": 219000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/2/5/256545.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/aus-frz-beef-chuck-tender-waf.html\"}, {\"id\": \"417312_10010\", \"name\": \"bắp hoa bò đông lạnh cắt lát xuất xứ canada, 250g\", \"price\": {\"current\": 125000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/1/417312.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/bap-hoa-bo-dong-lanh-cat-lat-xuat-xu-canada-250g.html\"}, {\"id\": \"206530_10010\", \"name\": \"bắp đùi/tay bò nguyên\", \"price\": {\"current\": 259000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/2/0/206530.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/bap-dui-tay-bo-nguyen-206530.html\"}, {\"id\": \"2328_10010\", \"name\": \"gầu bò tinh loại 1\", \"price\": {\"current\": 250000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/2/3/2328_1.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/gau-bo-tinh-loai-1-2328.html?atm_term=th%E1%BB%8Bt%20b%C3%B2%20vinabeef\"}, {\"id\": \"401044_10010\", \"name\": \"gầu bò tươi pc, 250g\", \"price\": {\"current\": 109000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/0/401044.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/gau-bo-tuoi-pc-250g.html\"}], \"metadata\": {\"total\": \"308\", \"type\": \"\", \"showing\": 10}}"
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              }
+            ]
+          },
+          "creation_timestamp": 1759844656.927478
+        },
+        {
+          "invocation_id": "e-8c7d5300-fb41-47a4-82fe-feeeae16a6a1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "tìm cá hồi đông lạnh"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Dưới đây là các sản phẩm cá hồi đông lạnh tôi tìm thấy:\n* trứng cá hồi đông lạnh nhập khẩu, 250g\n* cá hồi coho nhập khẩu we are fresh đông lạnh, 4kg trở lên\n* cá hồi nhập khẩu cắt khoanh đông lạnh we are fresh\n* cá hồi nhập khẩu cắt miếng đông lạnh we are fresh\n* cá hồi nhập khẩu cắt thỏi đông lạnh we are fresh, 500g\n* cá hồi nhập khẩu xông khói amigo, 100g\n* cá hồi nhập khẩu xông khói amigo, 1kg\n* cá hồi nhập khẩu xông khói amigo, 500g\n* cá hồi xông khói truyền thống, 200g\n* cá hồi xông khói vị tiêu, 200g"
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "mmvn_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "adk-9c888bad-6311-4366-b487-a3207422de8b",
+                        "args": {
+                          "filters_json": "{\"category\": \"thực phẩm tươi sống\"}",
+                          "keywords": "cá hồi đông lạnh"
+                        },
+                        "name": "search_products"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "mmvn_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-9c888bad-6311-4366-b487-a3207422de8b",
+                        "name": "search_products",
+                        "response": {
+                          "result": "{\"type\": \"product-display\", \"message\": \"Tìm thấy 10 sản phẩm phù hợp\", \"products\": [{\"id\": \"250744_10010\", \"name\": \"trứng cá hồi đông lạnh nhập khẩu, 250g\", \"price\": {\"current\": 559000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/2/5/250744.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/trung-ca-hoi-dong-lanh-nhap-khau-250g.html\"}, {\"id\": \"408553_10010\", \"name\": \"cá hồi coho nhập khẩu we are fresh đông lạnh, 4kg trở lên\", \"price\": {\"current\": 345000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/placeholder/default/logommvn-320.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ca-hoi-coho-nhap-khau-we-are-fresh-4kg.html?atm_term=c%C3%A1%20h%E1%BB%93i\"}, {\"id\": \"413395_10010\", \"name\": \"cá hồi nhập khẩu cắt khoanh đông lạnh we are fresh\", \"price\": {\"current\": 349000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/4/1/413395.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/ca-hoi-nhap-khau-cat-khoanh-dong-lanh-we-are-fresh.html\"}, {\"id\": \"423274_10010\", \"name\": \"cá hồi nhập khẩu cắt miếng đông lạnh we are fresh\", \"price\": {\"current\": 259000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/4/2/423274.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/ca-hoi-nhap-khau-cat-mieng-dong-lanh-we-are-fresh.html\"}, {\"id\": \"423275_10010\", \"name\": \"cá hồi nhập khẩu cắt thỏi đông lạnh we are fresh, 500g\", \"price\": {\"current\": 99000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/4/2/423275.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ca-hoi-nhap-khau-cat-thoi-dong-lanh-we-are-fresh-500g.html\"}, {\"id\": \"162305_10010\", \"name\": \"cá hồi nhập khẩu xông khói amigo, 100g\", \"price\": {\"current\": 85000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/1/6/162305.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ca-hoi-nhap-khau-xong-khoi-amigo-100g.html?atm_term=c%C3%A1%20r%C3%B4\"}, {\"id\": \"162295_10010\", \"name\": \"cá hồi nhập khẩu xông khói amigo, 1kg\", \"price\": {\"current\": 962000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/1/6/162295.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/ca-hoi-nhap-khau-xong-khoi-amigo-1kg.html\"}, {\"id\": \"162297_10010\", \"name\": \"cá hồi nhập khẩu xông khói amigo, 500g\", \"price\": {\"current\": 486000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/1/6/162297.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ca-hoi-nhap-khau-xong-khoi-amigo-500g.html?atm_term=c%C3%A0%20t%C3%ADm\"}, {\"id\": \"396303_10010\", \"name\": \"cá hồi xông khói truyền thống, 200g\", \"price\": {\"current\": 265000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/9/396303.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ca-hoi-xong-khoi-truyen-thong-200g.html\"}, {\"id\": \"396311_10010\", \"name\": \"cá hồi xông khói vị tiêu, 200g\", \"price\": {\"current\": 265000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/9/396311.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ca-hoi-xong-khoi-vi-tieu-200g.html\"}], \"metadata\": {\"total\": \"316\", \"type\": \"\", \"showing\": 10}}"
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              }
+            ]
+          },
+          "creation_timestamp": 1759844669.412157
+        },
+        {
+          "invocation_id": "e-ddbfeee2-9aa5-4d5a-b00c-81bef102cc44",
+          "user_content": {
+            "parts": [
+              {
+                "text": "tìm đồ ăn picnic"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Tôi tìm thấy các sản phẩm sau đây có thể phù hợp cho picnic:\n\n**Vật dụng ăn uống:**\n* bộ bàn ăn thủy tinh lumi precious 9m\n* chén cơm chuan kuo sứ trắng 11.5cm, 10 cái\n* chén súp minh long jaslys ngà, lốc 10 cái, 10cm/cái\n* tô cao sứ ngà lys minh long 18cm\n* tô thủy tinh luminarc marble 21cm\n* đĩa cạn ck sứ trắng 16cm\n* đĩa tròn 8 pastel green pv096\n* đĩa vuông sw lbn 9.5in 24cm\n\n**Thực phẩm:**\n* bánh canh gạo, 500g\n* bánh canh xắt ba khánh, 500g\n\nLưu ý: Kết quả tìm kiếm \"đồ ăn picnic\" trả về nhiều vật dụng ăn uống hơn là thực phẩm. Nếu bạn đang tìm kiếm đồ ăn cụ thể cho picnic, vui lòng cung cấp thêm thông tin chi tiết hơn."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "mmvn_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "adk-c4e271ac-759d-4e47-97d8-d2bc9cf075f6",
+                        "args": {
+                          "keywords": "đồ ăn picnic"
+                        },
+                        "name": "search_products"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "mmvn_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-c4e271ac-759d-4e47-97d8-d2bc9cf075f6",
+                        "name": "search_products",
+                        "response": {
+                          "result": "{\"type\": \"product-display\", \"message\": \"Tìm thấy 10 sản phẩm phù hợp\", \"products\": [{\"id\": \"435037_10010\", \"name\": \"bộ bàn ăn thủy tinh lumi precious 9m\", \"price\": {\"current\": 469000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/3/435037.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/bo-ban-an-thuy-tinh-lumi-precious-9m.html\"}, {\"id\": \"57119_10010\", \"name\": \"chén cơm chuan kuo sứ trắng 11.5cm, 10 cái\", \"price\": {\"current\": 189000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/5/7/57119.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/chen-com-chuan-kuo-su-trang-11-5cm-10-cai.html\"}, {\"id\": \"230825_10010\", \"name\": \"chén súp minh long jaslys ngà, lốc 10 cái, 10cm/cái\", \"price\": {\"current\": 199000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/2/3/230825.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/chen-sup-minh-long-jaslys-nga-loc-10-cai-10cm-cai.html\"}, {\"id\": \"207468_10010\", \"name\": \"tô cao sứ ngà lys minh long 18cm\", \"price\": {\"current\": 89000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/2/0/207468.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/to-cao-minh-long-su-nga-lys-18cm.html\"}, {\"id\": \"402985_10010\", \"name\": \"tô thủy tinh luminarc marble 21cm\", \"price\": {\"current\": 176000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/0/402985.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/to-thuy-tinh-luminarc-marble-21cm.html\"}, {\"id\": \"192597_10010\", \"name\": \"đĩa cạn ck sứ trắng 16cm\", \"price\": {\"current\": 29000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/1/9/192597.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/dia-can-chuan-kuo-su-trang-16cm.html\"}, {\"id\": \"423753_10010\", \"name\": \"đĩa tròn 8 pastel green pv096\", \"price\": {\"current\": 49000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/2/423753.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/dia-tron-8-pastel-green-pv096.html\"}, {\"id\": \"341035_10010\", \"name\": \"đĩa vuông sw lbn 9.5in 24cm\", \"price\": {\"current\": 49000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/4/341035.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/dia-vuong-sw-lbn-9-5in-24cm.html\"}, {\"id\": \"357575_10010\", \"name\": \"bánh canh gạo, 500g\", \"price\": {\"current\": 11200.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/5/357575.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/banh-canh-gao-500g.html\"}, {\"id\": \"435194_10010\", \"name\": \"bánh canh xắt ba khánh, 500g\", \"price\": {\"current\": 14000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/3/435194.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/banh-canh-xat-ba-khanh-500g.html\"}], \"metadata\": {\"total\": \"4792\", \"type\": \"\", \"showing\": 10}}"
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              }
+            ]
+          },
+          "creation_timestamp": 1759844727.214177
+        },
+        {
+          "invocation_id": "e-0210bc3e-ebc4-432e-b444-7f4eb0409bb0",
+          "user_content": {
+            "parts": [
+              {
+                "text": "lều trai hay cái gì đó đi"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Tôi không hiểu rõ ý của bạn. Bạn có thể nói rõ hơn \"lều trai hay cái gì đó đi\" có nghĩa là gì không? Bạn đang tìm kiếm loại sản phẩm nào?"
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {},
+          "creation_timestamp": 1759844745.88311
+        },
+        {
+          "invocation_id": "e-c1da2cb1-2cdc-495a-aeb3-804d1e3a9b10",
+          "user_content": {
+            "parts": [
+              {
+                "text": "tìm các sp lều trại hay cái gì đó để nướng"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Dưới đây là các sản phẩm liên quan đến lều trại và đồ nướng:\n\n**Lều trại:**\n* lều besico, 2m\n* lều tự động besico, 2m\n\n**Đồ nướng:**\n* sốt ướp đồ nướng lee kum kee, 2.45kg\n* sốt ướp đồ nướng lee kum kee, 45g\n* xốt ướp đồ nướng lee kum kee, 240g\n* bánh chưng, 1kg\n* bánh cupcake nho, lốc 6 cái, 40g\n* bánh custard kem sữa we are fresh, 200g\n* bánh cốm bảo minh, hộp 6 cái, 390g\n* bánh gai, hộp 5 cái, 60g/cái\n* bánh muffin socola, hộp 6 cái, 60g\n* bánh pía khoai môn sầu riêng, 310g\n\nBạn có muốn tìm thêm thông tin về loại lều nào hay loại đồ nướng cụ thể không?"
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "mmvn_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_call": {
+                        "id": "adk-cb1670d3-5d47-41be-b110-14bf686e5fcf",
+                        "args": {
+                          "keywords": "lều trại"
+                        },
+                        "name": "search_products"
+                      }
+                    },
+                    {
+                      "function_call": {
+                        "id": "adk-fed2389d-47b5-4939-a371-67ef246ee79e",
+                        "args": {
+                          "keywords": "đồ nướng"
+                        },
+                        "name": "search_products"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "mmvn_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-cb1670d3-5d47-41be-b110-14bf686e5fcf",
+                        "name": "search_products",
+                        "response": {
+                          "result": "{\"type\": \"product-display\", \"message\": \"Tìm thấy 2 sản phẩm phù hợp\", \"products\": [{\"id\": \"411441_10010\", \"name\": \"lều besico, 2m\", \"price\": {\"current\": 199000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/1/411441.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/leu-besico-2m.html\", \"category\": \"đồ gia dụng\"}, {\"id\": \"411436_10010\", \"name\": \"lều tự động besico, 2m\", \"price\": {\"current\": 449000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/1/411436.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/leu-tu-dong-besico-2m.html\", \"category\": \"đồ gia dụng\"}], \"metadata\": {\"total\": \"2\", \"type\": \"\", \"showing\": 2}}"
+                        }
+                      }
+                    },
+                    {
+                      "function_response": {
+                        "id": "adk-fed2389d-47b5-4939-a371-67ef246ee79e",
+                        "name": "search_products",
+                        "response": {
+                          "result": "{\"type\": \"product-display\", \"message\": \"Tìm thấy 10 sản phẩm phù hợp\", \"products\": [{\"id\": \"81489_10010\", \"name\": \"sốt ướp đồ nướng lee kum kee, 2.45kg\", \"price\": {\"current\": 266000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/8/1/81489.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/sot-uop-do-nuong-lee-kum-kee-2450g.html\"}, {\"id\": \"254685_10010\", \"name\": \"sốt ướp đồ nướng lee kum kee, 45g\", \"price\": {\"current\": 7500.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/2/5/254685.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/sot-uop-do-nuong-lee-kum-kee-45g.html\"}, {\"id\": \"209685_10010\", \"name\": \"xốt ướp đồ nướng lee kum kee, 240g\", \"price\": {\"current\": 46000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/2/0/209685.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/sot-uop-do-nuong-lee-kum-kee-240g.html\"}, {\"id\": \"117076_10010\", \"name\": \"bánh chưng, 1kg\", \"price\": {\"current\": 79000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/1/1/117076.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/banh-chung-1kg.html\"}, {\"id\": \"259882_10010\", \"name\": \"bánh cupcake nho, lốc 6 cái, 40g\", \"price\": {\"current\": 39000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/2/5/259882.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/banh-cupcake-nho-loc-6-cai-40g.html\"}, {\"id\": \"426521_10010\", \"name\": \"bánh custard kem sữa we are fresh, 200g\", \"price\": {\"current\": 29500.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/4/2/426521.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/banh-custard-kem-sua-we-are-fresh-200g.html?atm_term=s%E1%BB%AFa%20t%C6%B0%C6%A1i%20nguy%C3%AAn%20kem\"}, {\"id\": \"151702_10010\", \"name\": \"bánh cốm bảo minh, hộp 6 cái, 390g\", \"price\": {\"current\": 42500.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/1/5/151702.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/banh-com-bao-minh-hop-6-cai-390g-hop.html\"}, {\"id\": \"117078_10010\", \"name\": \"bánh gai, hộp 5 cái, 60g/cái\", \"price\": {\"current\": 35000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/1/1/117078.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/banh-gai-hop-5-cai-60g-cai.html\"}, {\"id\": \"74527_10010\", \"name\": \"bánh muffin socola, hộp 6 cái, 60g\", \"price\": {\"current\": 45000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/7/4/74527.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/banh-muffin-socola-hop-6-cai-x-60g.html\"}, {\"id\": \"165972_10010\", \"name\": \"bánh pía khoai môn sầu riêng, 310g\", \"price\": {\"current\": 43000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/1/6/165972.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/banh-pia-khoai-mon-sau-rieng-310g.html\"}], \"metadata\": {\"total\": \"4908\", \"type\": \"\", \"showing\": 10}}"
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              }
+            ]
+          },
+          "creation_timestamp": 1759844762.253921
+        },
+        {
+          "invocation_id": "e-03141b3e-fdf0-4290-a0b9-5a47b45f2361",
+          "user_content": {
+            "parts": [
+              {
+                "text": "so sánh thịt nướng và thịt gà"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Để so sánh thịt nướng và thịt gà, tôi cần biết bạn muốn so sánh những khía cạnh nào, ví dụ như:\n\n*   **Loại thịt:** \"Thịt nướng\" có thể là thịt heo, bò, gà, hoặc các loại thịt khác được chế biến bằng phương pháp nướng. \"Thịt gà\" là thịt từ con gà.\n*   **Phương pháp chế biến:** \"Thịt nướng\" là một phương pháp chế biến, còn \"thịt gà\" là nguyên liệu. Bạn có thể muốn so sánh \"thịt gà nướng\" với các loại thịt gà chế biến khác, hoặc so sánh các loại \"thịt nướng\" khác nhau.\n*   **Hương vị, dinh dưỡng, giá cả:** Bạn muốn so sánh về điểm nào?\n\nVui lòng cung cấp thêm thông tin để tôi có thể hỗ trợ bạn tốt hơn."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {},
+          "creation_timestamp": 1759845411.127532
+        },
+        {
+          "invocation_id": "e-53b2ebea-8fad-40ad-8d3b-d1ae4c4727ef",
+          "user_content": {
+            "parts": [
+              {
+                "text": "so sánh 2 sản phẩm giá rẻ nhất của 2 loại cho tôi"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Để so sánh 2 sản phẩm giá rẻ nhất của \"thịt nướng\" và \"thịt gà\", tôi cần làm rõ một số điểm:\n\n1.  **\"Thịt nướng\" là gì?** Như đã trao đổi trước, \"thịt nướng\" là một phương pháp chế biến. Bạn có muốn tôi tìm sản phẩm \"sốt ướp thịt nướng\" giá rẻ nhất và \"thịt gà\" giá rẻ nhất không? Hay bạn có một loại thịt cụ thể nào đó mà bạn muốn gọi là \"thịt nướng\" (ví dụ: thịt heo nướng, thịt bò nướng)?\n2.  **\"Thịt gà\" có bao gồm các loại chế biến sẵn không?** Ví dụ như gà nướng sẵn, cánh gà chiên... hay chỉ là thịt gà tươi sống?\n\nSau khi bạn làm rõ, tôi sẽ tiến hành tìm kiếm và so sánh."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {},
+          "creation_timestamp": 1759845434.129485
+        },
+        {
+          "invocation_id": "e-2e317b8c-53d3-4251-abfd-f47d5d0bf9cf",
+          "user_content": {
+            "parts": [
+              {
+                "text": "tươi sống"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Dưới đây là so sánh sản phẩm giá rẻ nhất của \"sốt ướp thịt nướng\" và \"thịt gà tươi sống\":\n\n**1. Sản phẩm giá rẻ nhất cho \"Sốt ướp thịt nướng\":**\n\n*   **Tên sản phẩm:** Sốt ướp đồ nướng lee kum kee, 45g\n*   **Giá:** 7.500 VND\n*   **Link:** https://online.mmvietnam.com/sot-uop-do-nuong-lee-kum-kee-45g.html\n\n**2. Sản phẩm giá rẻ nhất cho \"Thịt gà tươi sống\":**\n\n*   **Tên sản phẩm:** Cánh gà cp\n*   **Giá:** 54.000 VND\n*   **Link:** https://online.mmvietnam.com/canh-ga-khay-cp.html\n\n**So sánh:**\n\n*   **Về giá:** Sốt ướp thịt nướng có giá rẻ hơn đáng kể so với thịt gà tươi sống.\n*   **Về loại sản phẩm:** Sốt ướp là gia vị để chế biến, còn thịt gà là nguyên liệu chính cho món ăn.\n\nHy vọng thông tin này hữu ích cho bạn!"
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "invocation_events": [
+              {
+                "author": "mmvn_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "text": "Vậy là bạn muốn so sánh:\n\n1.  **Sản phẩm \"sốt ướp thịt nướng\" giá rẻ nhất.**\n2.  **Sản phẩm \"thịt gà tươi sống\" giá rẻ nhất.**\n\nTôi sẽ tìm kiếm và so sánh hai loại này cho bạn.\n"
+                    },
+                    {
+                      "function_call": {
+                        "id": "adk-d47410b0-2604-48d6-804e-f90d497490c2",
+                        "args": {
+                          "keywords": "sốt ướp thịt nướng",
+                          "filters_json": "{\"category\": \"dầu ăn - gia vị\"}",
+                          "sort_by": "price_asc"
+                        },
+                        "name": "search_products"
+                      }
+                    },
+                    {
+                      "function_call": {
+                        "id": "adk-fec818a7-375e-4d41-a670-304d6bf2eb14",
+                        "args": {
+                          "sort_by": "price_asc",
+                          "filters_json": "{\"category\": \"thực phẩm tươi sống\"}",
+                          "keywords": "thịt gà tươi sống"
+                        },
+                        "name": "search_products"
+                      }
+                    }
+                  ],
+                  "role": "model"
+                }
+              },
+              {
+                "author": "mmvn_agent",
+                "content": {
+                  "parts": [
+                    {
+                      "function_response": {
+                        "id": "adk-d47410b0-2604-48d6-804e-f90d497490c2",
+                        "name": "search_products",
+                        "response": {
+                          "result": "{\"type\": \"product-display\", \"message\": \"Tìm thấy 10 sản phẩm phù hợp\", \"products\": [{\"id\": \"405081_10010\", \"name\": \"bột gia vị thái vị gà nướng, 45g\", \"price\": {\"current\": 26900.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/4/0/405081.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/bot-gia-vi-thai-vi-ga-nuong-45g.html\"}, {\"id\": \"316691_10010\", \"name\": \"gia vị kho thịt cholimex, 200g\", \"price\": {\"current\": 22800.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/1/316691.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/gia-vi-kho-thit-cholimex-200g.html\"}, {\"id\": \"316696_10010\", \"name\": \"gia vị kho thịt cholimex, 50g\", \"price\": {\"current\": 6500.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/1/316696.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/gia-vi-kho-thit-cholimex-50g.html\"}, {\"id\": \"334689_10010\", \"name\": \"sốt thịt nướng bbq heinz, chai 480g\", \"price\": {\"current\": 79000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/3/3/334689.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/sot-thit-nuong-bbq-heinz-480g.html\"}, {\"id\": \"356043_10010\", \"name\": \"sốt ướp thịt hàn quốc cay, 240g\", \"price\": {\"current\": 33800.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/5/356043.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/sot-uop-thit-han-quoc-cay-goi-240g.html\"}, {\"id\": \"356045_10010\", \"name\": \"sốt ướp thịt hàn quốc cay, 80g\", \"price\": {\"current\": 11300.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/5/356045.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/sot-uop-thit-han-quoc-cay-goi-80g.html\"}, {\"id\": \"355934_10010\", \"name\": \"sốt ướp thịt hàn quốc truyền thống, 240g\", \"price\": {\"current\": 33800.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/5/355934.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/sot-uop-thit-han-quoc-o-food-vi-truyen-thong-240g.html\"}, {\"id\": \"81489_10010\", \"name\": \"sốt ướp đồ nướng lee kum kee, 2.45kg\", \"price\": {\"current\": 266000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/8/1/81489.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/sot-uop-do-nuong-lee-kum-kee-2450g.html\"}, {\"id\": \"254685_10010\", \"name\": \"sốt ướp đồ nướng lee kum kee, 45g\", \"price\": {\"current\": 7500.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/2/5/254685.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/sot-uop-do-nuong-lee-kum-kee-45g.html\"}, {\"id\": \"305663_10010\", \"name\": \"tương chấm thịt nướng cj, 450g\", \"price\": {\"current\": 73000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/0/305663.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/tuong-cham-thit-nuong-cj-450g.html\"}], \"metadata\": {\"total\": 818, \"type\": \"\", \"showing\": 10}}"
+                        }
+                      }
+                    },
+                    {
+                      "function_response": {
+                        "id": "adk-fec818a7-375e-4d41-a670-304d6bf2eb14",
+                        "name": "search_products",
+                        "response": {
+                          "result": "{\"type\": \"product-display\", \"message\": \"Tìm thấy 10 sản phẩm phù hợp\", \"products\": [{\"id\": \"434448_10010\", \"name\": \"chân gà rút xương đông lạnh, 1kg\", \"price\": {\"current\": 116000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/4/3/434448_20250915101839.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/chan-ga-rut-xuong-dong-lanh-1kg.html?atm_term=th%E1%BB%8Bt%20g%C3%A0\"}, {\"id\": \"389887_10010\", \"name\": \"cánh giữa gà đông lạnh nhập khẩu\", \"price\": {\"current\": 119000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/8/389887_1.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/canh-giua-ga-dong-lanh-nhap-khau.html\"}, {\"id\": \"351031_10010\", \"name\": \"cánh gà cp\", \"price\": {\"current\": 54000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/3/5/351031.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/canh-ga-khay-cp.html\"}, {\"id\": \"137956_10010\", \"name\": \"cánh gà công nghiệp cp-vn, 1kg\", \"price\": {\"current\": 106000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/1/3/137956.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/canh-ga-cong-nghiep-cp-vn-1kg.html\"}, {\"id\": \"225666_10010\", \"name\": \"cánh gà công nghiệp lbc\", \"price\": {\"current\": 109000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/2/2/225666.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/canh-ga-cong-nghiep-lbc.html\"}, {\"id\": \"223075_10010\", \"name\": \"gà công nghiệp bọng lbc\", \"price\": {\"current\": 81500.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/2/2/223075.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ga-cong-nghiep-bong-lbc.html\"}, {\"id\": \"337834_10010\", \"name\": \"gà nướng muối ớt\", \"price\": {\"current\": 158000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/3/3/337834.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ga-nuong-muoi-ot.html\"}, {\"id\": \"412624_10010\", \"name\": \"gà nướng sốt tiêu tỏi\", \"price\": {\"current\": 99000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/4/1/412624.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ga-nuong-sot-tieu-toi-412624.html?atm_term=t%E1%BB%8Fi%20b%C4%83m\"}, {\"id\": \"391292_10010\", \"name\": \"gà ta bình định\", \"price\": {\"current\": 149000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/cache/40feddc31972b1017c1d2c6031703b61/3/9/391292.webp\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ga-ta-binh-dinh.html?atm_term=g%C3%A0%20ta\"}, {\"id\": \"165643_10010\", \"name\": \"gà thả vườn quay\", \"price\": {\"current\": 139000.0, \"currency\": \"VND\"}, \"image\": {\"url\": \"https://mmpro.vn/media/catalog/product/1/6/165643.jpg\"}, \"productUrl\": \"https://online.mmvietnam.com/product/ga-tha-vuon-quay-nguyen-con-165643.html\"}], \"metadata\": {\"total\": \"1080\", \"type\": \"\", \"showing\": 10}}"
+                        }
+                      }
+                    }
+                  ],
+                  "role": "user"
+                }
+              }
+            ]
+          },
+          "creation_timestamp": 1759845450.928963
+        }
+      ],
+      "session_input": {
+        "app_name": "app",
+        "user_id": "user"
+      },
+      "creation_timestamp": 1759845605.7172348
+    }
+  ],
+  "creation_timestamp": 1759845597.1103384
+}

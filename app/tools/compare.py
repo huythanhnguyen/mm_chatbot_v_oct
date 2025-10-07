@@ -10,6 +10,10 @@ import time
 from typing import List
 from google.adk.tools import ToolContext
 from .context_optimized_tools import context_optimizer
+from .session_state import set_conversation_context
+from .artifact_tools import write_json_artifact, artifact_reference
+from app.persistence_sqlite import save_comparison, save_artifact
+from .session_state import get_last_user_question
 
 logger = logging.getLogger(__name__)
 
@@ -117,6 +121,38 @@ async def compare_products(product_ids: List[str], tool_context: ToolContext) ->
         
         # Optimize response using context optimizer
         json_response = context_optimizer.optimize_compare_response(compare_data, f"compare {len(product_ids)} products")
+
+        # Store brief conversation context
+        try:
+            set_conversation_context(tool_context.state, {
+                "last_action": "compare",
+                "num_products": len(product_ids)
+            })
+        except Exception:
+            pass
+
+        # Persist artifact: comparison results
+        try:
+            session_id = str(getattr(getattr(tool_context, 'session', None), 'id', 'unknown'))
+            compare_payload = {
+                "type": "comparison",
+                "product_ids": product_ids,
+                "products": minimal_products,
+                "intent": "compare",
+                "selected_answer": None,
+                "user_question": get_last_user_question(tool_context.state),
+                "created_at": time.time(),
+            }
+            path = write_json_artifact(compare_payload, category="compare", session_id=session_id)
+            from .session_state import add_artifact_ref
+            add_artifact_ref(tool_context.state, "compare", artifact_reference(path))
+            try:
+                save_artifact(session_id, "compare", path)
+                save_comparison(session_id, product_ids, minimal_products)
+            except Exception:
+                pass
+        except Exception:
+            pass
 
         # Log tool completion
         end_time = time.time()
